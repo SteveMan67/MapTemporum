@@ -51,20 +51,13 @@ for (const [id, layers, defaultChecked] of toggleableObjects) {
   const el = document.getElementById(id)
   console.log(el)
   console.log(getComputedStyle(el).color)
-  const isOn = () => {
-    if (getComputedStyle(el).color == "rgb(0, 0, 0)") {
-      return true
-    } else {
-      return false
-    }
-  }
+  const isOn = () => !el.classList.contains('greyed-out')
   console.log(isOn())
   // apply default on/off values 
   el.classList.add('greyed-out')
   if (defaultChecked) {
     el.classList.toggle('greyed-out')
   }
-
   if(defaultChecked) {
     for (const i of layers) {
       if (!whitelist.includes(i)) {
@@ -78,6 +71,8 @@ for (const [id, layers, defaultChecked] of toggleableObjects) {
       }
     }
   }
+
+  // EVENT LISTENER!!! [scheming silently]
   el.addEventListener("click", () => {
     if (isOn()) {
       for (const i of layers) {
@@ -85,12 +80,14 @@ for (const [id, layers, defaultChecked] of toggleableObjects) {
           whitelist.push(i)
         }
       }
+      el.classList.toggle('greyed-out')
     } else {
       for (const i of layers) {
         if (whitelist.includes(i)) {
           whitelist = whitelist.filter(f => f !== i)
         }
       }
+      el.classList.toggle('greyed-out')
     }
     updateMapLayers()
   })

@@ -119,6 +119,11 @@ nav {
     scrollbar-width: none;
     height: 30px;
 }
+
+#scroll h3 {
+    cursor: pointer;
+    user-select: none;
+}
 #export img {
     padding: 0 10px;
 }
