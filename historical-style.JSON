@@ -11,6 +11,12 @@
         "https://vtiles.openhistoricalmap.org/maps/osm/{z}/{x}/{y}.pbf"
       ]
     },
+    "ohm_admin": {
+      "type": "vector",
+      "tiles": [
+        "https://vtiles.openhistoricalmap.org/maps/ohm_admin/{z}/{x}/{y}.pbf"
+      ]
+    },
     "ohm_landcover_hillshade": {
       "type": "raster",
       "tiles": [
@@ -66,6 +72,7 @@
         ]
       }
     },
+    
     {
       "id": "land",
       "type": "fill",
@@ -10104,6 +10111,24 @@
       }
     },
     {
+      "id": "boundaries",
+      "type": "line",
+      "source": "ohm_admin",
+      "source-layer": "land_ohm_lines",
+      "minzoom": 0,
+      "maxzoom": 24,
+      "filter": [
+        "in",
+        ["to-number", ["get", "admin_level"]],
+        ["literal", [1, 2, 3, 4]]
+      ],
+      "layout": { "visibility": "visible" },
+      "paint": {
+        "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.4, 6, 0.75, 12, 2, 16, 3],
+        "line-color": "rgba(200, 210, 163, 1)"
+      }
+    },
+    {
       "id": "state_lines_admin_4-case",
       "type": "line",
       "source": "osm",
@@ -13416,6 +13441,32 @@
         "text-halo-color": "rgba(255, 255, 255, 1)",
         "text-halo-width": 1,
         "text-halo-blur": 1
+      }
+    },
+    {
+      "id": "boundaries_admin_123",
+      "type": "line",
+      "source": "ohm_admin",
+      "source-layer": "boundaries",
+      "minzoom": 6,
+      "maxzoom": 14,
+      "filter": ["in", ["to-number", ["get", "admin_level"]], ["literal", [1, 2, 3]]],
+      "paint": {
+        "line-color": "#9aa8a0",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 0, 0.5, 6, 1.2]
+      }
+    },
+    {
+      "id": "boundaries_admin_4",
+      "type": "line",
+      "source": "ohm_admin",
+      "source-layer": "boundaries",
+      "minzoom": 0,
+      "maxzoom": 6,
+      "filter": ["in", ["to-number", ["get", "admin_level"]], ["literal", [4]]],
+      "paint": {
+        "line-color": "#BF2525",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 0, 0.5, 6, 1.2]
       }
     },
     {

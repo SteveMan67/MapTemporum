@@ -1,5 +1,27 @@
 {
   "dependencies": {
-    "maplibre-gl": "^5.15.0"
-  }
+    "@mapbox/vector-tile": "^2.0.4",
+    "maplibre-gl": "^5.15.0",
+    "node-fetch": "^2.7.0",
+    "pbf": "^4.0.1"
+  },
+  "name": "ohm-teacher-interface",
+  "version": "1.0.0",
+  "description": "Serves as an interface between all the good data on openhistoricalmap.org and teachers/students.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteveMan67/OHM-teacher-interface.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SteveMan67/OHM-teacher-interface/issues"
+  },
+  "homepage": "https://github.com/SteveMan67/OHM-teacher-interface#readme"
 }

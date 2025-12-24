@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: "Heebo", sans-serif;
 }
 
 #map {
@@ -46,4 +47,82 @@ html, body {
 
 #dropdown img, #dropup img {
     height: 15px;
+}
+
+#slider-box {
+    position: fixed;
+    bottom: 10px;
+    background-color: blue;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+#min-date-box, #max-date-box {
+    margin: 10px;
+}
+
+#slider {
+    justify-self: bottom;
+    padding: 10px;
+    width: 300px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    position: fixed;
+    z-index: 9999999;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #ffffff;
+    margin: 10px 20px 0 10px;
+    border: 1px solid #4421AE;
+    padding: 10px;
+    border-radius: 400px;
+    height: 30px;
+}
+
+.nav-item h1 {
+    font-size: 20px;
+    color: #4421AE;
+    padding: 0 5px;
+}
+
+.nav-item h3 {
+    font-size: 15px;
+    padding: 0 10px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.greyed-out {
+    color: rgb(158, 158, 158)
+}
+.nav-item img {
+    width: 30px;
+    height: 30px;
+}
+
+#scroll {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    overflow-x: auto;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    height: 30px;
+}
+#export img {
+    padding: 0 10px;
+}
+
+#filter img {
+    padding: 0 10px;
 }

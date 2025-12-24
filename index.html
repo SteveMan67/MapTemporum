@@ -6,26 +6,47 @@
         <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
         <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
         <link rel="stylesheet" href="styles/style.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap" rel="stylesheet">
     </head>
     <body>
+        <nav>
+            <div id="logo" class="nav-item">
+                <img src="images/icons/logo.png"/>
+                <h1>MapThingy</h1>
+            </div>
+            <div id="export" class="nav-item">
+                <img src="images/icons/save.png">
+                <h3>Save</h3>
+                <h3>Save as</h3>
+                <h3>Load</h3>
+            </div>
+            <div id="filter" class="nav-item">
+                <img src="images/icons/filter.png">
+                <div id="scroll">
+                    <h3 id="major-cities">Major Cities</h3>
+                    <h3 id="minor-cities">Minor Cities</h3>
+                    <h3 id="labels">Country Labels</h3>
+                    <h3 id="borders">Boundaries</h3>
+                    <h3 id="land">Land</h3>
+                    <h3 id="background">Background</h3>
+                </div>
+                <h3>More...</h3>
+
+            </div>
+        </nav>
         <div id="map"></div>
         <script src="javascript/script.js" defer></script>
-        <div id="toggle">
-            <div id="dropdown">
-            <img src="images/icons/dropdown.png"/>
+        <div id="slider-box">
+            <div id="min-date-box">
+                <p id="min-date">67 BC</p>
+                <input type="date"></input>
             </div>
-            <div id="list" style="display:none;">
-                <ol>
-                    <div id="dropup">
-                    <img src="images/icons/dropup.png"/>
-                    </div>
-                    <li>
-                    <input type="checkbox" id="land">Land</input>
-                    </li>
-                    <li>
-                    <input type="checkbox" id="background">Background</input>
-                    </li>
-                </ol>
+            <input id="slider" type="range"></input>
+            <div id="max-date-box">
+                <p id="min-date">67 AD</p>
+                <input type="date"></input>
             </div>
         </div>
     </body>
