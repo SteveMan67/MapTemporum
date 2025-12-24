@@ -23,8 +23,8 @@ let whitelist = [
   "city_labels_town_z8",
   "city_labels_z11",
   "city_labels_z6",
-  "boundaries_admin_4",
-  "boundaries_admin_123",
+  "boundaries_admin_34",
+  "boundaries_admin_12",
   "country_points_labels_cen",
   "country_points_labels"
 ];
@@ -36,8 +36,8 @@ let whitelist = [
 let toggleableObjects = [
   ["land", ["land"], true],
   ["background", ["background"], true],
-  ["borders", ["boundaries_admin_4",
-  "boundaries_admin_123",], true],
+  ["borders", ["boundaries_admin_34",
+  "boundaries_admin_12",], true],
   ["labels", ["city_locality_labels_other_z11",
   "city_labels_other_z11",
   "city_labels_town_z8",

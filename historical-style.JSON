@@ -13444,26 +13444,26 @@
       }
     },
     {
-      "id": "boundaries_admin_123",
+      "id": "boundaries_admin_12",
       "type": "line",
       "source": "ohm_admin",
       "source-layer": "boundaries",
       "minzoom": 6,
       "maxzoom": 14,
-      "filter": ["in", ["to-number", ["get", "admin_level"]], ["literal", [1, 2, 3]]],
+      "filter": ["in", ["to-number", ["get", "admin_level"]], ["literal", [1, 2]]],
       "paint": {
         "line-color": "#9aa8a0",
         "line-width": ["interpolate", ["linear"], ["zoom"], 0, 0.5, 6, 1.2]
       }
     },
     {
-      "id": "boundaries_admin_4",
+      "id": "boundaries_admin_34",
       "type": "line",
       "source": "ohm_admin",
       "source-layer": "boundaries",
       "minzoom": 0,
       "maxzoom": 6,
-      "filter": ["in", ["to-number", ["get", "admin_level"]], ["literal", [4]]],
+      "filter": ["in", ["to-number", ["get", "admin_level"]], ["literal", [3, 4]]],
       "paint": {
         "line-color": "#BF2525",
         "line-width": ["interpolate", ["linear"], ["zoom"], 0, 0.5, 6, 1.2]
