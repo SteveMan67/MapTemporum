@@ -40,22 +40,30 @@
         <div id="map"></div>
         <script src="javascript/script.js" defer></script>
         <div id="slider-box">
-            <div id="min-date-box">
-                <p id="min-date">67</p><p id="era">BC</p>
-                <!-- <input type="number"></input>
-                <select name="era" id="era">
-                    <option value="BC">BC</option>
-                    <option value="AD">AD</option>
-                </select> -->
+            <div id="date-container">
+                <div id="min-date-selection">
+                    <input type="number"></input>
+                    <select name="era" id="era-select">
+                        <option value="BC">BC</option>
+                        <option value="AD">AD</option>
+                    </select>
+                </div>
+                <div id="min-date-box">
+                    <p id="min-date">67</p><p id="era">BC</p>
+                </div>
             </div>
             <input id="slider" type="range" min="-67" max="67"></input>
-            <div id="max-date-box">
-                <p id="min-date">67<p id="era">AD</p></p>
-                <!-- <input type="number"></input>
-                <select name="era" id="era-input">
-                    <option value="BC">BC</option>
-                    <option value="AD">AD</option>
-                </select> -->
+            <div id="date-container">
+                <div id="min-date-selection">
+                    <input type="number"></input>
+                    <select name="era" id="era-select">
+                        <option value="BC">BC</option>
+                        <option value="AD">AD</option>
+                    </select>
+                </div>
+                <div id="max-date-box">
+                    <p id="min-date">67<p id="era">AD</p></p>
+                </div>
             </div>
         </div>
     </body>
