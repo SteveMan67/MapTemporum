@@ -151,15 +151,39 @@ maxDate.addEventListener('mouseleave', () => {
 
 minDateInput.addEventListener('input', () => {
   minDateDisplay.innerHTML = minDateInput.value
+  if (minEraDisplay.innerHTML == 'BC') {
+    slider.min = (minDateInput.value * -1)
+  } else {
+    slider.min = minDateInput.value
+  }
+  setFill()
 });
 minEraInput.addEventListener('input', () => {
   minEraDisplay.innerHTML = minEraInput.value
+  if (minEraInput.innerHTML == 'BC') {
+    slider.min = (minDateInput.value * -1)
+  } else {
+    slider.min = minDateInput.value
+  }
+  setFill()
 });
 maxDateInput.addEventListener('input', () => {
   maxDateDisplay.innerHTML = maxDateInput.value
+  if (maxEraDisplay.innerHTML == 'BC') {
+    slider.max = (maxDateInput.value * -1)
+  } else {
+    slider.max = maxDateInput.value
+  }
+  setFill()
 });
 minEraInput.addEventListener('input', () => {
   maxEraDisplay.innerHTML = maxEraInput.value
+  if (maxEraInput.innerHTML == 'BC') {
+    slider.max = (maxDateInput.value * -1)
+  } else {
+    slider.max = maxDateInput.value
+  }
+  setFill()
 });
 
 // event listener to update the map date based on the slider
