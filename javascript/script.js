@@ -118,6 +118,50 @@ function updateMapLayers() {
   }
 }
 
+// date range event listeners
+const minDateSelection = document.getElementById('min-date-selection')
+const maxDateSelection = document.getElementById('max-date-selection')
+const minDateDisplay = document.getElementById('min-date')
+const maxDateDisplay = document.getElementById('max-date')
+const minEraDisplay = document.getElementById('min-era')
+const maxEraDisplay = document.getElementById('max-era')
+const minEraInput = document.getElementById('min-era-select')
+const maxEraInput = document.getElementById('max-era-select')
+const minDateInput = document.getElementById('min-date-input')
+const maxDateInput = document.getElementById('max-date-input')
+
+minDateSelection.classList.add('invisible')
+maxDateSelection.classList.add('invisible')
+const minDate = document.getElementById('min-date-container')
+const maxDate = document.getElementById('max-date-container')
+
+minDate.addEventListener('mouseenter', () => {
+  minDateSelection.classList.remove('invisible')
+})
+minDate.addEventListener('mouseleave', () => {
+  minDateSelection.classList.add('invisible')
+  
+})
+maxDate.addEventListener('mouseenter', () => {
+  maxDateSelection.classList.remove('invisible')
+})
+maxDate.addEventListener('mouseleave', () => {
+  maxDateSelection.classList.add('invisible')
+})
+
+minDateInput.addEventListener('input', () => {
+  minDateDisplay.innerHTML = minDateInput.value
+});
+minEraInput.addEventListener('input', () => {
+  minEraDisplay.innerHTML = minEraInput.value
+});
+maxDateInput.addEventListener('input', () => {
+  maxDateDisplay.innerHTML = maxDateInput.value
+});
+minEraInput.addEventListener('input', () => {
+  maxEraDisplay.innerHTML = maxEraInput.value
+});
+
 // event listener to update the map date based on the slider
 slider.addEventListener('mouseup', () => {
   date = Number(slider.value)

@@ -27,64 +27,6 @@ html, body {
     color: white;
 }
 
-/* min and max date box styles */
-#date-container {
-    position: relative;
-    background-color: #4421AE;
-    border-radius: 50px;
-}
-
-    /* and the inputs */
-#min-date-selection, #max-date-selection {
-    position: absolute;
-    top: -60px;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
-    pointer-events: auto;
-    background-color: #4421AE;
-    border-radius: 50px 50px 0 0;
-    padding-bottom: 50px;
-    z-index: 0;
-    /* display: none; */
-}
-#min-date-selection input, #max-date-selection input {
-    margin: 5px;
-    width: 40px;
-}
-#min-date-selection select, #max-date-selection select {
-    margin: 5px;
-    width: 40px;
-}
-#min-date-box, #max-date-box {
-    position: relative;
-    margin: 10px;
-    background-color: #4421AE;
-    white-space: nowrap;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 60px;
-    border-radius: 100px;
-    padding: 10px 20px;
-    z-index: 2;
-}
-
-#min-date, #max-date {
-    font-size: 40px;
-    font-weight: bold;
-}
-
-#era {
-    font-size: 30px;
-    padding-top: 8px;
-    color: #CCD5FF;
-}
-
 #slider {
     justify-self: bottom;
     padding: 10px;
@@ -98,6 +40,7 @@ html, body {
     border-radius: 50px;
     border: 1px solid #4421AE;
     align-self: center;
+    margin: 0 10px;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
@@ -137,6 +80,66 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 0;
 }
 
+/* min and max date box styles */
+#min-date-container, #max-date-container {
+    position: relative;
+    background-color: #4421AE;
+    border-radius: 50px;
+    min-width: 150px;
+}
+#min-date-box, #max-date-box {
+    position: relative;
+    margin: 10px;
+    background-color: #4421AE;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 60px;
+    border-radius: 100px;
+    padding: 10px 20px;
+    z-index: 2;
+}
+
+#min-date, #max-date {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#min-era, #max-era {
+    font-size: 30px;
+    padding-top: 8px;
+    color: #CCD5FF;
+}
+
+    /* and the inputs */
+#min-date-selection, #max-date-selection {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    pointer-events: auto;
+    background-color: #4421AE;
+    border-radius: 50px 50px 0 0;
+    padding-bottom: 50px;
+    z-index: 0;
+    /* display: none; */
+}
+#min-date-selection input, #max-date-selection input {
+    margin: 5px;
+    width: 40px;
+}
+#min-date-selection select, #max-date-selection select {
+    margin: 5px;
+    width: 40px;
+}
+
+/* nav bar styles */
 nav {
     display: flex;
     flex-direction: row;
@@ -192,10 +195,16 @@ nav {
     cursor: pointer;
     user-select: none;
 }
+    /* images */
 #export img {
     padding: 0 10px;
 }
 
 #filter img {
     padding: 0 10px;
+}
+
+/* misc */
+.invisible {
+    display: none !important;
 }
