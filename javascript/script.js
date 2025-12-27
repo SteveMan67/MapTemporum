@@ -66,18 +66,36 @@ setFill()
 // where the structure of each list inside the list is
 // ["elementID", ["layers", "that", "it", "toggles", "off"], default-checked-boolean]
 let toggleableObjects = [
-  ["land", ["land", "ohm_landcover_hillshade"], true],
+  ["land", ["ohm_landcover_hillshade", "landuse_areas_earth"], true],
   ["background", ["background"], true],
   ["borders", ["country-boundaries"], true],
-  ["labels", ["city_locality_labels_other_z11",
-  "city_labels_other_z11",
-  "city_labels_town_z8",
-  "city_labels_z11",
-  "city_labels_z6",
-  "country_points_labels_cen", 
-  "country_points_labels",
-  "placearea_label"], true],
-  ["rivers", [], false]
+  ["labels", 
+    ["city_locality_labels_other_z11",
+    "city_labels_other_z11",
+    "city_labels_town_z8",
+    "city_labels_z11",
+    "city_labels_z6",
+    "country_points_labels_cen", 
+    "country_points_labels",
+    "county_labels_z11_admin_7-8_centroids",
+    "county_labels_z11_admin_6_centroids",
+    "water_point_labels_ocean_sea",
+    "placearea_label"], 
+    true],
+  ["rivers", 
+    ["water_lines_stream_no_name",
+    "water_lines_stream_name",
+    "water_lines_ditch",
+    "water_lines_aqueduct",
+    "water_lines_labels",
+    "water_lines_labels_cliff",
+    "water_lines_labels_dam",
+    "water_areas_labels_z15",
+    "county_labels_z11",
+    "water_areas_labels_z12",
+    "water_areas_labels_z8",
+    "water_lines_river"], 
+    false]
 ];
 
 // toggle event listeners
@@ -125,7 +143,7 @@ for (const [id, layers, defaultChecked] of toggleableObjects) {
 }
 
   // add a function to update the map when the user clicks a toggle to show/hide something
-applyWhitelist = false;
+applyWhitelist = true;
 function updateMapLayers() {
   const style = map.getStyle();
   let layers = [];
@@ -137,7 +155,7 @@ function updateMapLayers() {
       // console.log(layer.id)
     }
     layers.push(layer.id);
-    console.log(layers)
+    // console.log(layers)
   }
 }
 
