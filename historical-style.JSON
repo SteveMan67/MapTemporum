@@ -10436,10 +10436,7 @@
         "text-padding": 2,
         "text-rotation-alignment": "auto",
         "text-pitch-alignment": "auto",
-        "text-field": [
-          "get",
-          "name"
-        ]
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]]
       },
       "paint": {
         "text-color": "rgba(82, 82, 82, 1)",
@@ -10479,10 +10476,7 @@
         "text-padding": 2,
         "text-rotation-alignment": "auto",
         "text-pitch-alignment": "auto",
-        "text-field": [
-          "get",
-          "name"
-        ]
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]]
       },
       "paint": {
         "text-color": "rgba(82, 82, 82, 1)",
@@ -10506,10 +10500,7 @@
         100000
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical Italic"
         ],
@@ -10551,10 +10542,7 @@
         1000000
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical Italic"
         ],
@@ -10603,10 +10591,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical Italic"
         ],
@@ -10651,10 +10636,7 @@
         10000000
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical Italic"
         ],
@@ -10717,10 +10699,7 @@
         "text-rotation-alignment": "auto",
         "text-anchor": "bottom",
         "text-pitch-alignment": "auto",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-letter-spacing": 0
       },
       "paint": {
@@ -10764,10 +10743,7 @@
         "text-rotation-alignment": "auto",
         "text-anchor": "bottom",
         "text-pitch-alignment": "auto",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-letter-spacing": 0
       },
       "paint": {
@@ -10823,10 +10799,7 @@
         "text-rotation-alignment": "auto",
         "text-anchor": "bottom",
         "text-pitch-alignment": "auto",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-letter-spacing": 0
       },
       "paint": {
@@ -10909,10 +10882,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -10986,10 +10956,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -11074,10 +11041,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -11146,10 +11110,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": 11,
         "text-font": [
           "OpenHistorical"
@@ -11183,10 +11144,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": 11,
         "text-font": [
           "OpenHistorical"
@@ -11231,10 +11189,7 @@
       ],
       "layout": {
         "text-size": 12,
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ]
@@ -11300,10 +11255,7 @@
           13,
           14
         ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ]
@@ -11363,10 +11315,7 @@
           12,
           14
         ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ]
@@ -11402,10 +11351,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": 11,
         "text-font": [
           "OpenHistorical"
@@ -11433,10 +11379,7 @@
         "military"
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": 13,
         "text-font": [
           "OpenHistorical"
@@ -11464,10 +11407,7 @@
         "glacier"
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical Italic"
         ],
@@ -11513,10 +11453,7 @@
       "layout": {
         "icon-image": "{type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -11590,10 +11527,7 @@
       "layout": {
         "icon-image": "{tourism}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -11672,10 +11606,7 @@
       "layout": {
         "icon-image": "{type}-12",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": 8,
         "text-anchor": "top",
         "text-offset": [
@@ -11727,10 +11658,7 @@
       "layout": {
         "icon-image": "{type}-12",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": 8,
         "text-anchor": "top",
         "text-offset": [
@@ -11762,10 +11690,7 @@
       "layout": {
         "icon-image": "{type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -11889,10 +11814,7 @@
           1.4
         ],
         "text-anchor": "top",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-max-width": 10,
         "icon-ignore-placement": false
       },
@@ -11965,10 +11887,7 @@
           1.4
         ],
         "text-anchor": "top",
-        "text-field": [
-          "get",
-          "name"
-        ]
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]]
       },
       "paint": {
         "text-color": "rgba(80, 80, 80, 1)",
@@ -12008,10 +11927,7 @@
       "layout": {
         "icon-image": "{site_type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -12087,10 +12003,7 @@
       "layout": {
         "icon-image": "{artwork_type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -12199,10 +12112,7 @@
       "layout": {
         "icon-image": "{type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -12287,10 +12197,7 @@
       "layout": {
         "icon-image": "{type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -12365,10 +12272,7 @@
       "layout": {
         "icon-image": "{type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -12417,10 +12321,7 @@
       "layout": {
         "icon-image": "{type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -12504,10 +12405,7 @@
       "layout": {
         "icon-image": "{type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -12564,10 +12462,7 @@
       "layout": {
         "icon-image": "{type}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": [
           "interpolate",
           [
@@ -12683,10 +12578,7 @@
         "text-font": [
           "OpenHistorical"
         ],
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": 8,
         "text-anchor": "top",
         "text-offset": [
@@ -12715,10 +12607,7 @@
       "layout": {
         "icon-image": "{shop}-18",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-size": 8,
         "text-anchor": "top",
         "text-offset": [
@@ -12758,10 +12647,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ],
@@ -12813,10 +12699,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ],
@@ -12863,10 +12746,7 @@
         "county"
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ],
@@ -12918,10 +12798,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ],
@@ -12973,10 +12850,7 @@
         ]
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ],
@@ -13020,10 +12894,7 @@
         "town"
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ],
@@ -13067,10 +12938,7 @@
         "city"
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical"
         ],
@@ -13153,10 +13021,7 @@
         ],
         "icon-size": 1,
         "text-anchor": "top",
-        "text-field": [
-          "get",
-          "name"
-        ]
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]]
       },
       "paint": {
         "text-color": "rgba(34, 34, 34, 1)",
@@ -13220,10 +13085,7 @@
         ],
         "icon-size": 1,
         "text-anchor": "top",
-        "text-field": [
-          "get",
-          "name"
-        ]
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]]
       },
       "paint": {
         "text-color": "rgba(34, 34, 34, 1)",
@@ -13283,10 +13145,7 @@
         ],
         "symbol-placement": "point",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ]
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]]
       },
       "paint": {
         "text-color": [
@@ -13369,10 +13228,7 @@
         ],
         "symbol-placement": "point",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ]
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]]
       },
       "paint": {
         "text-color": [
@@ -13425,10 +13281,7 @@
         "Admin-1 capital"
       ],
       "layout": {
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-font": [
           "OpenHistorical Bold"
         ],
@@ -13480,7 +13333,7 @@
       "layout": { "visibility": "visible" },
       "paint": {
         "line-color": "#78787a",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 0, 0.6, 6, 1.5, 10, 5]
+        "line-width": ["interpolate", ["linear"], ["zoom"], 0, 0.6, 6, 1.5, 10, 5, 14, 10]
       }
     },
     {
@@ -13538,10 +13391,7 @@
         "symbol-placement": "point",
         "text-justify": "center",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-max-width": 7
       },
       "paint": {
@@ -13589,12 +13439,15 @@
       "minzoom": 0,
       "maxzoom": 12,
       "filter": [
-        "==",
+        "coalesce",
         [
           "get",
-          "type"
+          "name_en"
         ],
-        "country"
+        [
+          "get",
+          "name"
+        ]
       ],
       "layout": {
         "text-line-height": 1,
@@ -13622,10 +13475,7 @@
         "symbol-placement": "point",
         "text-justify": "center",
         "visibility": "visible",
-        "text-field": [
-          "get",
-          "name"
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
         "text-max-width": 7
       },
       "paint": {

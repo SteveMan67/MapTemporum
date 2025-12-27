@@ -12,6 +12,16 @@ html, body {
     height: 100%;
 }
 
+/* map controls */
+.maplibregl-ctrl-top-right .maplibregl-ctrl {
+    float: left;   
+    margin: 80px 0 0 10px;
+}
+.maplibregl-ctrl-top-right {
+    left: 0;
+    top: 0;
+}
+
 /* slider styles */
 #slider-box {
     position: fixed;

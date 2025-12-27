@@ -9,10 +9,34 @@ var map = new maplibregl.Map({
   },
 });
 
+function setLanguage(lang) {
+  const style = map.getStyle();
+  if (!style || !style.layers) return; // guard if style not ready
+  
+  for (const layer of style.layers) {
+    // check if it's a symbol layer with text-field
+    if (layer.type === 'symbol') {
+      try {
+        const textField = map.getLayoutProperty(layer.id, 'text-field');
+        if (textField) {
+          map.setLayoutProperty(layer.id, 'text-field', [
+            'coalesce',
+            ['get', `name_${lang}`],
+            ['get', 'name']
+          ]);
+        }
+      } catch (e) {
+        // layer may not be ready yet, skip it
+      }
+    }
+  }
+}
+
 map.addControl(new maplibregl.NavigationControl());
 
 let whitelist = [
   "ohm_admin_boundaries",
+  "ohm_landcover_hillshade",
   "boundary",
   "boundaries",
   "background",
@@ -105,11 +129,12 @@ for (const [id, layers, defaultChecked] of toggleableObjects) {
 }
 
   // add a function to update the map when the user clicks a toggle to show/hide something
+applyWhitelist = true;
 function updateMapLayers() {
   const style = map.getStyle();
   let layers = [];
   for (const layer of style.layers) {
-    if (!whitelist.includes(layer.id)) {
+    if (!whitelist.includes(layer.id) && applyWhitelist) {
       map.setLayoutProperty(layer.id, "visibility", "none");
     } else {
       map.setLayoutProperty(layer.id, "visibility", "visible")
@@ -210,13 +235,27 @@ slider.addEventListener('mouseup', () => {
   map.filterByDate(date)
 });
 
+// smth for debug
+map.on('click', (e) => {
+  const features = map.queryRenderedFeatures(e.point);
+  console.log(features.map(f => f.properties));
+});
+
 //show everything but the whitelist on load 
 // CURRENTLY TAKES A WHILE TO WORK AFTER MAP LOADS
+// only run this once (I know it's jank, it works) otherwise it gets triggered on map.filterByDate()
 let once = false;
 map.on("styledata", () => {
   if(!once) {
     updateMapLayers()
-    map.filterByDate("2025")
+    map.filterByDate(slider.value)
+    // const language = new MapboxLanguage();
+    // map.addControl(language)
+    setLanguage('en')
     once = true;
   }
 });
+
+map.on('load', () => {
+  setLanguage('en')
+})
