@@ -42,6 +42,7 @@ const optionsContainer = document.getElementById("options-container")
 const layerSelection = document.getElementById("layer-selection")
 const loadingScreen = document.getElementById('loading-screen')
 const loadingText = document.getElementById('load-text')
+const saveAsScreen = document.getElementById('save-img-select')
 
 async function downloadAsPng(width = 3840, height = 2160, filename = 'MapThingy-download.png') {
   optionsContainer.classList.remove('invisible')
@@ -218,6 +219,8 @@ for (const [id, layers, defaultChecked, name] of toggleableObjects) {
 
 filterButtons = [document.getElementById("filter-img"), document.getElementById("more-filters")]
 let clickOnBackgroundToClose = false
+
+// filter page
 for (el of filterButtons) {
   el.addEventListener("click", () => {
     clickOnBackgroundToClose = true
@@ -225,19 +228,66 @@ for (el of filterButtons) {
     layerSelection.classList.remove("invisible")
   })
 }
-const closeButton = document.getElementById("close-button")
-closeButton.addEventListener("click", () => {
+const filterCloseButton = document.getElementById("filter-close-button")
+filterCloseButton.addEventListener("click", () => {
   clickOnBackgroundToClose = false
   optionsContainer.classList.add("invisible")
   layerSelection.classList.add("invisible")
 })
 optionsContainer.addEventListener("click", (e) => {
-  if (layerSelection.contains(e.target) || !clickOnBackgroundToClose) return;
+  if (layerSelection.contains(e.target) || saveAsScreen.contains(e.target) ||!clickOnBackgroundToClose) return;
   optionsContainer.classList.add("invisible")
   layerSelection.classList.add("invisible")
 })
 
-// add a function to update the map when the user clicks a toggle to show/hide something
+
+// download as page
+const saveAs = document.getElementById("save-as")
+saveAs.addEventListener("click", () => {
+  clickOnBackgroundToClose = true;
+  optionsContainer.classList.remove("invisible")
+  saveAsScreen.classList.remove("invisible")
+})
+const saveAsCloseButton = document.getElementById("save-as-close-button")
+saveAsCloseButton.addEventListener("click", () => {
+  clickOnBackgroundToClose = false
+  optionsContainer.classList.add("invisible")
+  saveAsScreen.classList.add("invisible")
+})
+
+const filenameSelector = document.getElementById('filename')
+const filetypeSelector = document.getElementById('filetype')
+const resolutionSelector = document.getElementById('resolution')
+const downloadButton = document.getElementById('download-button')
+
+
+
+
+downloadButton.addEventListener('click', () => {
+  saveAsScreen.classList.add('invisible')
+  optionsContainer.classList.add('invisible')
+  let filename = filenameSelector.value
+  let filetype = filetypeSelector.value
+  let resolution = resolutionSelector.value
+  clickOnBackgroundToClose = false;
+  filename = filename + String(filetype)
+  const container = map.getContainer()
+  let res_x
+  let res_y
+  if(resolution == "current") {
+    res_x = container.style.width
+    res_y = container.style.height
+  } else if (resolution == "1080p") {
+    res_x = 1920;
+    res_y = 1080;
+  } else {
+    res_x = 3160;
+    res_y = 2160;
+  }
+  downloadAsPng(res_x, res_y, filename)
+})
+
+
 applyWhitelist = true;
 function toggleWhitelist() {
   if (applyWhitelist) {
@@ -248,6 +298,7 @@ function toggleWhitelist() {
   updateMapLayers()
 }
 
+// add a function to update the map when the user clicks a toggle to show/hide something
 function updateMapLayers() {
   const style = map.getStyle();
   let layers = [];

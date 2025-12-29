@@ -347,8 +347,6 @@ nav {
     height: 20px;
     cursor: pointer;
 }
-
-
 #filters {
     padding-left: 50px;
 }
@@ -365,8 +363,64 @@ nav {
     margin: 0 50px;
 }
 
+/* Save As */
+#save-img-select {
+    background-color: white;
+    width: 80%;
+    min-width: 500px;
+    overflow-y: scroll;
+    justify-self: center;
+    align-self: center;
+    z-index: 20000001;
+    border-radius: 50px;
+    scrollbar-width: none;
+}
+#save-img-select li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+#save-img-select h3 {
+    font-family: "Heebo", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+#save-img-select input, #save-img-select select {
+    background-color: none;
+    border-radius: 5px;
+    font-family: "Heebo", sans-serif;
+    border: none !important;
+    padding: 0;
+    font-size: 20px;
+    height: 35px;
+    color: black;
+    text-align: right;
+}
 
+#save-img-select input:focus, #save-img-select select:focus {
+    border: none;
+}
+#save-img-select hr {
+    border: 1px solid rgb(0 0 0 / 50%);
+    margin: 0 50px 10px 50px;
+}
+#save-img-select ol {
+    margin: 0 50px 30px 50px;
+    padding: 0;
+}
+#download-button {
+    background-color: #4421AE;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-top: 20px;
 
+}
 
 /* misc */
 .invisible {

@@ -21,7 +21,7 @@
             <div id="export" class="nav-item">
                 <img id="save-img" src="images/icons/save.png">
                 <h3 id="save-button">Save</h3>
-                <h3>Save As</h3>
+                <h3 id="save-as">Save As</h3>
             </div>
             <div id="filter" class="nav-item">
                 <img id="filter-img" src="images/icons/filter.png">
@@ -89,7 +89,7 @@
             <div id="layer-selection" class="invisible">
                 <div id="top">
                     <h2>Filters</h2>
-                    <img id="close-button" src="images/icons/close.png">
+                    <img id="filter-close-button" src="images/icons/close.png">
                 </div>
                 <hr>
                 <ol id="filters">
@@ -102,13 +102,35 @@
             </div>
             <div id="save-img-select" class="invisible">
                 <div id="top">
-                    <h2>Download As</h2>
-                    <img id="close-button" src="images/icons/close.png">
+                    <h2>Save As</h2>
+                    <img id="save-as-close-button" src="images/icons/close.png">
                 </div>
                 <hr>
-                <ol id="filters">
-
+                <ol>
+                    <li>
+                        <h3>Name</h3>
+                        <input id="filename" type="text" placeholder="MapThingyDownload">
+                    </li>
+                    <li>
+                        <h3>Filetype</h3>
+                        <select id="filetype">
+                            <option value=".png">.png</option>
+                            <option value=".jpg">.jpg</option>
+                        </select>
+                    </li>
+                    <li>
+                        <h3>Resolution</h3>
+                        <select id="resolution">
+                            <option value="current">Current Resolution</option>
+                            <option value="1080p">1920x1080</option>
+                            <option value="4k">3160x2160</option>
+                        </select>
+                    </li>
+                    <li>
+                        <button id="download-button">Download</button>
+                    </li>
                 </ol>
+                
             </div>
         </div>
     </body>
