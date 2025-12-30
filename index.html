@@ -42,16 +42,9 @@
         <script src="javascript/script.js" defer></script>
         <div id="slider-box">
             <div id="min-date-container">
-                <!-- <div id="min-date-selection" class="invisible">
-                    <input type="number" id="min-date-input"></input>
-                    <select name="era" id="min-era-select">
-                        <option value="BC">BC</option>
-                        <option value="AD">AD</option>
-                    </select>
-                </div> -->
                 <div id="min-date-box">
                     <div id="min-date-selection" class="invisible">
-                        <input type="number" id="min-date-input" value="1776"></input>
+                        <input type="number" id="min-date-input" value="1776" inputmode="numberic" pattern="[0-9]*" autocorrect="off" spellcheck="off"></input>
                         <select name="era" id="min-era-select">
                             <option value="BC">BC</option>
                             <option value="AD" selected>AD</option>
@@ -67,13 +60,6 @@
             </div>
 
             <div id="max-date-container">
-                <!-- <div id="max-date-selection" class="invisible">
-                    <input type="number" id="max-date-input"></input>
-                    <select name="era" id="max-era-select">
-                        <option value="BC">BC</option>
-                        <option value="AD">AD</option>
-                    </select>
-                </div> -->
                 <div id="max-date-box">
                     <div id="max-date-selection" class="invisible">
                         <input type="number" id="max-date-input" value="2025"></input>

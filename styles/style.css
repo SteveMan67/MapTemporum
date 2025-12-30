@@ -447,7 +447,7 @@ nav {
     
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     /* nav bar */
     #logo, #export, #filter {
         margin: 10px 10px 0 10px;
@@ -492,6 +492,11 @@ nav {
         width: 17px;
         margin-top: -18px;
     }
+    #current-date-display {
+        bottom: 50px;
+        font-size: 15px;
+        padding: 7px 10px;
+    }
     /* date inputs */
     #min-date, #max-date {
         font-size: 20px
@@ -504,27 +509,46 @@ nav {
     }
     #min-date-selection select, #max-date-selection select {
         font-size: 20px;
+        height: 30px;
+        padding: 0;
+        margin-right: 10px;
     } 
     #min-date-selection input, #max-date-selection input {
         font-size: 20px;
+        height: 30px;
+        width: 4ch;
+        padding: 0;
     } 
     #min-date-selection, #max-date-selection {
-        height: 50px;
+        height: 40px;
+        display: flex;
     }
     #min-date-box, #max-date-box {
-        height: 50px;
-        margin: 0;
+        height: 40px;
+        margin: 5px;
         padding: 0 10px;
-        width: 60px;
+        width: auto;
     }
+    #selection-box {
+        top: -1px;
+        left: -1px;
+        border: 1px solid white;
+    }
+
 
     /* controls */
     .maplibregl-ctrl-top-left {
         float: right;   
-        margin: 10px 10px 0 0;
-        left:auto;
+        margin: 0 10px 0 0;
+        padding-top: 0;
+        left: auto;
         right: 0;
         top: 0;
+    }
+    .maplibregl-ctrl-bottom-right {
+        bottom: auto;
+        top: 0;
+        margin-right: 40px;
     }
 
     .maplibregl-ctrl-group:not(:empty) {
@@ -532,7 +556,23 @@ nav {
         border: 1px solid #4421AE;
     }
 
+    /* filters */
+    #layer-selection {
+        min-height: auto;
+        min-width: 300px;
+        width: 60%;
+        border-radius: 25px;
     }
+    #top {
+        padding: 15px 50px 0 50px;
+    }
+    #top h2 {
+        font-size: 20px;
+    }
+    #filters li {
+        font-size: 20px;
+    }
+}
 
 /* misc */
 .invisible {

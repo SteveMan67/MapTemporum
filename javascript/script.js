@@ -11,8 +11,11 @@ var map = new maplibregl.Map({
 });
 map.addControl(new maplibregl.NavigationControl(), 'top-left');
 map.addControl(new maplibregl.GlobeControl, 'top-left')
-map.addControl(new maplibregl.FullscreenControl, 'top-left')
 
+let isPhone = false
+if(window.innerWidth < 800) {
+  isPhone = true
+}
 
 function setLanguage(lang) {
   const style = map.getStyle();
@@ -535,7 +538,10 @@ function updateDateDisplay() {
   const min = Number(slider.min)
   const max = Number(slider.max)
   const percent = (val - min) / (max - min)
-  const sliderWidth = slider.offsetWidth - 50 // subtract padding
+  let sliderWidth = slider.offsetWidth - 50 // subtract padding
+  if (isPhone) {
+    sliderWidth = slider.offsetWidth - 40
+  }
   const displayWidth = dateDisplay.offsetWidth
   const sliderOffset = percent * (sliderWidth);
   const displayHalfWidth = displayWidth / 2;
