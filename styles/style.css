@@ -447,7 +447,7 @@ nav {
     
 }
 
-@media (max-width: 800px) {
+@media (orientation: landscape) and (max-height: 600px) and (hover: none) {
     /* nav bar */
     #logo, #export, #filter {
         margin: 10px 10px 0 10px;
