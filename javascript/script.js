@@ -281,8 +281,8 @@ downloadButton.addEventListener('click', () => {
   } else {
     filename = filename + String(filetype)
   }
-  const ext = filetype.value
-  const safeName = sanitizeFilename(filename.value, ext)
+  const ext = filetype
+  const safeName = sanitizeFilename(filename, ext)
   const container = map.getContainer()
   let res_x
   let res_y
