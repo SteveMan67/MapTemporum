@@ -13035,7 +13035,7 @@
       "type": "symbol",
       "source": "osm",
       "source-layer": "place_points_centroids",
-      "minzoom": 6,
+      "minzoom": 4,
       "maxzoom": 11,
       "filter": [
         "all",
@@ -13099,7 +13099,7 @@
       "type": "symbol",
       "source": "osm",
       "source-layer": "land_ohm_centroids",
-      "minzoom": 5,
+      "minzoom": 3,
       "maxzoom": 20,
       "filter": [
         "all",
@@ -13187,7 +13187,7 @@
       "type": "symbol",
       "source": "osm",
       "source-layer": "place_points_centroids",
-      "minzoom": 5,
+      "minzoom": 3,
       "maxzoom": 20,
       "filter": [
         "in",
@@ -13270,7 +13270,7 @@
       "type": "symbol",
       "source": "osm",
       "source-layer": "populated_places",
-      "minzoom": 10,
+      "minzoom": 4,
       "maxzoom": 20,
       "filter": [
         "==",

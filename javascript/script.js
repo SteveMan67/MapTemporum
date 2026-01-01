@@ -12,6 +12,9 @@ var map = new maplibregl.Map({
 map.addControl(new maplibregl.NavigationControl(), 'top-left');
 map.addControl(new maplibregl.GlobeControl, 'top-left')
 
+let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+let colorStyle = "Light"
+
 //show everything but the whitelist on load 
 // CURRENTLY TAKES A WHILE TO WORK AFTER MAP LOADS
 // only run this once (I know it's jank, it works) otherwise it gets triggered on map.filterByDate()
@@ -19,6 +22,8 @@ let once = false;
 map.on("styledata", () => {
   if(!once) {
     updateMapLayers()
+    colorStyle = isDarkMode ? "Dark" : "Light"
+    updateColors()
     map.filterByDate(slider.value)
     // const language = new MapboxLanguage();
     // map.addControl(language)
@@ -197,7 +202,9 @@ for (el of saveButtons) {
 
 
 
-let whitelist = [];
+let whitelist = [
+  "custom-markers-layer"
+];
 
 // set --val so that I can have the background to the right of the slider a different color
 const slider = document.getElementById("slider")
@@ -210,6 +217,33 @@ const setFill = () => {
 slider.addEventListener('input', setFill);
 setFill()
 
+let customColors = [
+  {
+    name: "Light",
+    font: "Openhistorical Bold",
+    text_color: "#6d786d",
+    text_halo: "#fff",
+    colors: {
+      land: "#fff",
+      background: "#99E0DE",
+      water_areas: "#99E0DE"
+    },
+    useLandCover: true
+  },
+  {
+    name: "Dark",
+    font: "Openhistorical Bold",
+    text_color: "#fff",
+    text_halo: "#000",
+    colors: {
+      land: "#0D0301",
+      background: "#315F8B",
+      water_areas: "#315F8B",
+      water_lines_river: "#315F8B"
+    },
+    useLandCover: false
+  }
+]
 // used to loop through and add event listeners automatically
 // list consists of lists of lists OH NO
 // where the structure of each list inside the list is
@@ -229,9 +263,14 @@ let toggleableObjects = [
     "county_labels_z11_admin_7-8_centroids",
     "county_labels_z11_admin_6_centroids",
     "water_point_labels_ocean_sea",
+    "state_points_labels_centroids",
+    "city_capital_labels_z6",
+    "statecapital_labels_z10",
+    "state_points_labels",
     "county_labels_z11",
     "other_countries",
-    "placearea_label"], 
+    "placearea_label",
+    "custom-markers"], 
     true, "Labels"],
   ["rivers", 
     ["water_lines_stream_no_name",
@@ -414,9 +453,9 @@ function toggleWhitelist() {
 }
 
 // add a function to update the map when the user clicks a toggle to show/hide something
+let layers = [];
 function updateMapLayers() {
   const style = map.getStyle();
-  let layers = [];
   for (const layer of style.layers) {
     if (!whitelist.includes(layer.id) && applyWhitelist) {
       map.setLayoutProperty(layer.id, "visibility", "none");
@@ -427,7 +466,70 @@ function updateMapLayers() {
     layers.push(layer.id);
     // console.log(layers)
   }
+
 }
+
+let applyColors = true;
+
+
+function updateColors() {
+  const style = map.getStyle()
+  let targetLayers = []
+  let styleIndex = customColors.findIndex(f => f.name == colorStyle)
+  console.log(`Index of ${colorStyle}: ${styleIndex}`)
+  for (layer of style.layers) {
+    if (customColors[styleIndex].colors.hasOwnProperty(layer.id)) {
+      let paintProperty = "background-color";
+      let secondaryProperty
+      if (layer.type == "background") {
+        paintProperty = "background-color"
+      } else if (layer.type == "fill") {
+        paintProperty = "fill-color"
+      } else if (layer.type == "line") {
+        paintProperty = "line-color"
+      }
+      console.log(layer.id, paintProperty,
+         customColors[styleIndex].colors[layer.id])
+      map.setPaintProperty(
+         layer.id,
+         paintProperty,
+         customColors[styleIndex].colors[layer.id]
+      )
+    }
+    if (layer.type == "symbol") {
+      if (customColors[styleIndex].text_color){
+        console.log(layer.id, "text-color", customColors[styleIndex].text_color)
+        map.setPaintProperty(
+          layer.id,
+          "text-color",
+          customColors[styleIndex].text_color
+        )
+      }
+      if (customColors[styleIndex].text_halo) {
+        map.setPaintProperty(
+          layer.id,
+          "text-halo-color",
+          customColors[styleIndex].text_halo
+        )
+      }
+    }
+  }
+  if (customColors[styleIndex].useLandCover != null) {
+    if(customColors[styleIndex].useLandCover) {
+      map.setLayoutProperty("ohm_landcover_hillshade", "visibility", "visible")
+    } else {
+      map.setLayoutProperty("ohm_landcover_hillshade", "visibility", "none")
+    }
+  }
+}
+
+// handle Dark Mode from browser
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  isDarkMode = e.matches;
+  colorStyle = isDarkMode ? "Dark" : "Light"
+  updateColors()
+});
 
 function isValidDate(year, era) {
   const CurrentYear = 2026
@@ -930,6 +1032,7 @@ map.on('contextmenu', (e) => {
           const id = features.map(f => f.id)
           console.log(`deleting element with id ${id[0]}`)
           deleteFeature(id[0], "custom-markers")
+          closeMenu()
         })
       }
     }
