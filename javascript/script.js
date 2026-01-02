@@ -302,7 +302,8 @@ let filterList = [
       "county_labels_z11",
       "other_countries",
       "placearea_label",
-      "custom-markers-layer"
+      "custom-markers-layer",
+      
     ],
     prettyName: "Labels",
     subcategories: [
@@ -312,7 +313,8 @@ let filterList = [
           "city_labels_z6"
         ],
         prettyName: "Major-Cities",
-        quickMenu: true
+        quickMenu: true,
+        isDefaultOn: true
       },
       {
         id: "minor-cities",
@@ -324,6 +326,7 @@ let filterList = [
         ],
         prettyName: "Minor Cities",
         quickMenu: true,
+        isDefaultOn: false
       },
       {
         id: "state-labels",
@@ -332,14 +335,16 @@ let filterList = [
           "state_points_labels"
         ],
         prettyName: "State Labels",
-        quickMenu: true
-
+        quickMenu: true,
+        isDefaultOn: false
       },
       {
         id: "custom-markers",
         toggledLayers: [
           "custom-markers-layer"
-        ]
+        ],
+        prettyName: "Custom Markers",
+        isDefaultOn: true
       }
     ]
   },
@@ -365,61 +370,23 @@ let filterList = [
   }
 ]
 
-let toggleableObjects = [
-  ["borders", ["country_boundaries", "state_lines_admin_4",], true, "Borders"],
-  ["labels", 
-    ["city_locality_labels_other_z11",
-    "city_labels_other_z11",
-    "city_labels_town_z8",
-    "city_labels_z11",
-    "city_labels_z6",
-    "country_points_labels_cen", 
-    "country_points_labels",
-    "county_labels_z11_admin_7-8_centroids",
-    "county_labels_z11_admin_6_centroids",
-    "water_point_labels_ocean_sea",
-    "state_points_labels_centroids",
-    "city_capital_labels_z6",
-    "statecapital_labels_z10",
-    "state_points_labels",
-    "county_labels_z11",
-    "other_countries",
-    "placearea_label",
-    "custom-markers-layer"], 
-    true, "Labels"],
-  ["rivers", 
-    ["water_lines_stream_no_name",
-    "water_lines_stream_name",
-    "water_lines_ditch",
-    "water_lines_aqueduct",
-    "water_lines_labels",
-    "water_lines_labels_cliff",
-    "water_lines_labels_dam",
-    "water_areas_labels_z15",
-    "county_labels_z11",
-    "water_areas_labels_z12",
-    "water_areas_labels_z8",
-
-
-    "water_lines_river"], 
-    false, "Rivers"]
-];
-
 function toggleLayers(on, layerList) {
-  if(on) {
-    for (i of layerList) {
-      if (!whitelist.includes(i)) {
-        whitelist.push(i)
-      } 
-    }
-  } else {
-    for (i of layerList) {
-      if (whitelist.includes(i)) {
-        whitelist = whitelist.filter(f => f !== i)
+  if (layerList) {
+    if(on) {
+      for (i of layerList) {
+        if (!whitelist.includes(i)) {
+          whitelist.push(i)
+        } 
+      }
+    } else {
+      for (i of layerList) {
+        if (whitelist.includes(i)) {
+          whitelist = whitelist.filter(f => f !== i)
+        }
       }
     }
+    updateMapLayers()
   }
-  updateMapLayers()
 }
 
 const toggleQuickMenu = document.getElementById("scroll")
@@ -470,6 +437,31 @@ function addFilters() {
         toggleLayers(false, filterList[i].toggledLayers)
       }
     })
+
+    // add any subfilters 
+    if (filter.subcategories) {
+      for (const subItem of filter.subcategories) {
+        let subcategory = document.createElement('li')
+        subcategory.textContent = subItem.prettyName
+        subcategory.id = subItem.id
+        subcategory.classList.add("subcategory")
+        if (!subItem.isDefaultOn) {
+          subcategory.classList.add("greyed-out")
+        } else {
+          toggleLayers(true, i.toggledLayers)
+        }
+        list.appendChild(subcategory)
+        subcategory.addEventListener('click', () => {
+          if (subcategory.classList.contains("greyed-out")) {
+            subcategory.classList.remove("greyed-out")
+            toggleLayers(true, subItem.toggledLayers)
+          } else {
+            subcategory.classList.add("greyed-out")
+            toggleLayers(false, subItem.toggledLayers)
+          }
+        })
+      }
+    }
   }
 }
 

@@ -2,7 +2,7 @@
   "version": 8,
   "name": "ohm-historical",
   "metadata": {
-    "maputnik:renderer": "mbgljs"
+    "maputnik:renderer": "mlgljs"
   },
   "sources": {
     "osm": {
@@ -13035,7 +13035,7 @@
       "type": "symbol",
       "source": "osm",
       "source-layer": "place_points_centroids",
-      "minzoom": 4,
+      "minzoom": 3,
       "maxzoom": 11,
       "filter": [
         "all",
@@ -13285,7 +13285,7 @@
         "text-font": [
           "OpenHistorical Bold"
         ],
-        "text-size": 10,
+        "text-size": 25,
         "text-transform": "uppercase",
         "visibility": "visible"
       },

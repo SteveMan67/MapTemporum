@@ -443,6 +443,10 @@ nav {
     margin: 0 50px;
 }
 
+.subcategory {
+    margin-left: 20px;
+}
+
 /* Save As */
 #save-img-select {
     background-color: var(--background);
