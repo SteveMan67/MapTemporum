@@ -13099,7 +13099,7 @@
       "type": "symbol",
       "source": "osm",
       "source-layer": "land_ohm_centroids",
-      "minzoom": 3,
+      "minzoom": 4,
       "maxzoom": 20,
       "filter": [
         "all",
@@ -13187,7 +13187,7 @@
       "type": "symbol",
       "source": "osm",
       "source-layer": "place_points_centroids",
-      "minzoom": 3,
+      "minzoom": 4,
       "maxzoom": 20,
       "filter": [
         "in",

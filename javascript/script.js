@@ -7,10 +7,8 @@ var map = new maplibregl.Map({
   attributionControl: {
     customAttribution: '<a href="https://www.openhistoricalmap.org/">OpenHistoricalMap</a>',
   },
-  preserveDrawingBuffer: true,
+  preserveDrawingBuffer: true
 });
-map.addControl(new maplibregl.NavigationControl(), 'top-left');
-map.addControl(new maplibregl.GlobeControl, 'top-left')
 
 let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 let colorStyle = "Light"
@@ -21,9 +19,11 @@ let colorStyle = "Light"
 let once = false;
 map.on("styledata", () => {
   if(!once) {
+    map.setProjection({type: 'mercator'})
     updateMapLayers()
     colorStyle = isDarkMode ? "Dark" : "Light"
     updateColors()
+    swapDarkModeImages(isDarkMode)
     map.filterByDate(slider.value)
     // const language = new MapboxLanguage();
     // map.addControl(language)
@@ -226,7 +226,9 @@ let customColors = [
     colors: {
       land: "#fff",
       background: "#99E0DE",
-      water_areas: "#99E0DE"
+      water_areas: "#99E0DE",
+      country_boundaries: "#828282",
+      state_lines_admin_4: "#A8C1B7",
     },
     useLandCover: true
   },
@@ -236,10 +238,12 @@ let customColors = [
     text_color: "#fff",
     text_halo: "#000",
     colors: {
-      land: "#0D0301",
+      land: "#040100ff",
       background: "#315F8B",
       water_areas: "#315F8B",
-      water_lines_river: "#315F8B"
+      water_lines_river: "#315F8B",
+      country_boundaries: "#fff",
+      state_lines_admin_4: "#31353A"
     },
     useLandCover: false
   }
@@ -380,6 +384,7 @@ optionsContainer.addEventListener("click", (e) => {
   if (layerSelection.contains(e.target) || saveAsScreen.contains(e.target) ||!clickOnBackgroundToClose) return;
   optionsContainer.classList.add("invisible")
   layerSelection.classList.add("invisible")
+  filterSelection.classList.add("invisible")
 })
 
 
@@ -456,8 +461,9 @@ function toggleWhitelist() {
 let layers = [];
 function updateMapLayers() {
   const style = map.getStyle();
+  layers = []
   for (const layer of style.layers) {
-    if (!whitelist.includes(layer.id) && applyWhitelist) {
+    if (!whitelist.includes(layer.id) && applyWhitelist || layer.id == "ohm_landcover_hillshade" && isDarkMode) {
       map.setLayoutProperty(layer.id, "visibility", "none");
     } else {
       map.setLayoutProperty(layer.id, "visibility", "visible")
@@ -476,7 +482,6 @@ function updateColors() {
   const style = map.getStyle()
   let targetLayers = []
   let styleIndex = customColors.findIndex(f => f.name == colorStyle)
-  console.log(`Index of ${colorStyle}: ${styleIndex}`)
   for (layer of style.layers) {
     if (customColors[styleIndex].colors.hasOwnProperty(layer.id)) {
       let paintProperty = "background-color";
@@ -488,8 +493,7 @@ function updateColors() {
       } else if (layer.type == "line") {
         paintProperty = "line-color"
       }
-      console.log(layer.id, paintProperty,
-         customColors[styleIndex].colors[layer.id])
+         customColors[styleIndex].colors[layer.id]
       map.setPaintProperty(
          layer.id,
          paintProperty,
@@ -498,7 +502,6 @@ function updateColors() {
     }
     if (layer.type == "symbol") {
       if (customColors[styleIndex].text_color){
-        console.log(layer.id, "text-color", customColors[styleIndex].text_color)
         map.setPaintProperty(
           layer.id,
           "text-color",
@@ -524,11 +527,39 @@ function updateColors() {
 }
 
 // handle Dark Mode from browser
+function swapDarkModeImages(isDarkMode) {
+  const saveImg = document.getElementById("save-img")
+  const filterImg = document.getElementById("filter-img")
+  const logoImg = document.getElementById("logo-img")
+  const plusImg = document.getElementById('zoom-in-img')
+  const minusImg = document.getElementById('zoom-out-img')
+  const globeImg = document.getElementById('globe-img')
+  const layerImg = document.getElementById('layers-img')
+
+  if (isDarkMode) {
+    saveImg.src = "/images/icons/save-dark.png"
+    filterImg.src = "/images/icons/filter-dark.png"
+    logoImg.src = "/images/icons/logo-dark.png"
+    plusImg.src = "/images/icons/plus-dark.svg"
+    minusImg.src = "/images/icons/minus-dark.svg"
+    globeImg.src = "/images/icons/globe-dark.svg"
+    layerImg.src = "/images/icons/layers-dark.svg"
+  } else {
+    saveImg.src = "/images/icons/save.png"
+    filterImg.src = "/images/icons/filter.png"
+    logoImg.src = "/images/icons/logo.png"
+    plusImg.src = "/images/icons/plus.svg"
+    minusImg.src = "/images/icons/minus.svg"
+    globeImg.src = "/images/icons/globe.svg"
+    layerImg.src = "/images/icons/layers.svg"
+  }
+}
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
   isDarkMode = e.matches;
   colorStyle = isDarkMode ? "Dark" : "Light"
   updateColors()
+  swapDarkModeImages(isDarkMode)
 });
 
 function isValidDate(year, era) {
@@ -551,6 +582,49 @@ function isValidDate(year, era) {
 }
 
 
+// custom map controls for dark mode
+const zoomIn = document.getElementById('zoom-in')
+const zoomOut = document.getElementById('zoom-out')
+const globeControl = document.getElementById('globe')
+const layersControl = document.getElementById('layers-control')
+
+zoomIn.addEventListener('mousedown', (e) => {
+  e.preventDefault()
+})
+zoomIn.addEventListener('click', () => {
+  map.zoomIn()
+})
+zoomOut.addEventListener('mousedown', (e) => {
+  e.preventDefault()
+})
+zoomOut.addEventListener('click', () => {
+  map.zoomOut()
+})
+globeControl.addEventListener('mousedown', (e) => {
+  e.preventDefault
+})
+layersControl.addEventListener('mousedown', (e) => {
+  e.preventDefault
+})
+layersControl.addEventListener('click', () => {
+  // show layer selection menu, right now only light and dark mode
+})
+
+globeControl.addEventListener('click', () => {
+  const currentProjection = map.getProjection()
+  console.log
+  if (currentProjection) {
+    if (currentProjection.type == 'mercator') {
+      map.setProjection({type: 'globe'})
+    } else {
+      map.setProjection({type: 'mercator'})
+    }
+  } else {
+    map.setProjection({type: 'globe'})
+  }
+  
+})
+
 // date range event listeners
 const minDateSelection = document.getElementById('min-date-selection')
 const maxDateSelection = document.getElementById('max-date-selection')
@@ -571,7 +645,6 @@ const maxDate = document.getElementById('max-date-container')
 function isLessThanDate(date = minDateInput.value, era = minEraInput.value, compareDate = maxDateInput.value, compareEra = maxEraInput.value) {
   date = Number(date)
   compareDate = Number(compareDate)
-  console.log(date, era, compareDate, compareEra)
   if (era == "BC") {
     if (compareEra == "BC") {
       // dates are both bc, higher number is older
@@ -628,10 +701,10 @@ maxDate.addEventListener('mouseleave', () => {
 // input to make it look better 
 minDateInput.addEventListener('input', () => {
   if(isValidDate(minDateInput.value)) {
-    if (era = "BC") {
-      slider.min = minDateInput.value * -1
+    if (minEraInput.value == "BC") {
+      slider.min = Math.abs(minDateInput.value) * -1
     } else {
-      slider.min = minDateInput.value
+      slider.min = Math.abs(minDateInput.value)
     }
     setFill()
   }
@@ -639,10 +712,10 @@ minDateInput.addEventListener('input', () => {
 minDateInput.addEventListener('focusout', () => {
   let date = minDateInput.value
   if (isValidDate(minDateInput.value, minEraDisplay) && isLessThanDate()) {
-    if (minEraInput.innerHTML == 'BC') {
-      slider.min = (date * -1)
+    if (minEraInput.value == 'BC') {
+      slider.min = (Math.abs(date) * -1)
     } else {
-      slider.min = date
+      slider.min = Math.abs(date)
     }
     minDateDisplay.innerHTML = date
     lastValidMin = date
@@ -657,9 +730,9 @@ minEraInput.addEventListener('input', () => {
   if (isLessThanDate()) {
     minEraDisplay.innerHTML = minEraInput.value
     if (minEraInput.value == 'BC') {
-      slider.min = (minDateInput.value * -1)
+      slider.min = (Math.abs(minDateInput.value) * -1)
     } else {
-      slider.min = minDateInput.value
+      slider.min = Math.abs(minDateInput.value)
     } 
   setFill()
   } else {
@@ -674,10 +747,10 @@ minEraInput.addEventListener('input', () => {
 
 maxDateInput.addEventListener('input', () => {
   if(isValidDate(maxDateInput.value)) {
-    if (era = "BC") {
-      slider.max = maxDateInput.value * -1
+    if (maxEraInput.value == "BC") {
+      slider.max = (Math.abs(maxDateInput.value) * -1)
     } else {
-      slider.max = maxDateInput.value
+      slider.max = Math.abs(maxDateInput.value)
     }
     setFill()
   }
@@ -685,8 +758,8 @@ maxDateInput.addEventListener('input', () => {
 maxDateInput.addEventListener('focusout', () => {
   let date = maxDateInput.value
   if (isValidDate(maxDateInput.value, maxEraDisplay) && isLessThanDate()) {
-    if (maxEraInput.innerHTML == 'BC') {
-      slider.max = (date * -1)
+    if (maxEraInput.ivalue == 'BC') {
+      slider.max = (Math.abs(date) * -1)
     } else {
       slider.max = date
     }
@@ -703,7 +776,7 @@ maxEraInput.addEventListener('input', () => {
   if(isLessThanDate()) {
     maxEraDisplay.innerHTML = maxEraInput.value
     if (maxEraInput.value == 'BC') {
-      slider.max = (maxDateInput.value * -1)
+      slider.max = (Math.abs(maxDateInput.value) * -1)
     } else {
       slider.max = maxDateInput.value
     }
@@ -822,6 +895,8 @@ function addToRightClickTop(text) {
   }
 }
 
+
+
 let markers = []
 
 function addMarker(text = "haha", lng, lat) {
@@ -871,7 +946,6 @@ function getWikidataId(id) {
     .then(response => response.json())
     .then(data => {
       if (data['elements'][0]) {
-        console.log(data['elements'][0])
         const tags = data['elements'][0]['tags']   
         let wikidata = tags.wikidata
         let wikipedia = tags.wikipedia     
@@ -918,7 +992,6 @@ ORDER BY DESC(?populationYear)`
 
 async function fetchPopulationForYear(id, year) {
   const populations = await fetchPopulation(id)
-  console.log(populations)
   let closestYear = 300099998; 
   let closestPopulation = null;
   for ([population, date] of populations) {
@@ -950,24 +1023,18 @@ ORDER BY DESC(?populationYear)`
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       populationsList = data["results"]["bindings"]
       populations = []
       for (item of populationsList) {
         populations.push([item.population.value, item.populationYear.value])
       }
-      console.log(populations)
     })
 }
 
 function deleteFeature(featureId, layer) {
   const source = map.getSource(layer)
   const data = source._data
-  console.log("source data:")
-  console.log(data)
   const i = data.features.findIndex(f => f.id == featureId)
-  console.log(`received id ${featureId} and found index ${i}`)
-  console.log(i)
   if (i != -1) {
     data.features.splice(i, 1)
     source.setData(data)
@@ -993,7 +1060,6 @@ map.on('contextmenu', (e) => {
   
   (async () => {
     let id = features.map(f => f.id)[0]
-    console.log(`feature id: ${id}`)
     let properties = features.map(f => f.properties)
     let source = features.map(f => f.source)
     let wikidata, wikipedia;
@@ -1030,7 +1096,6 @@ map.on('contextmenu', (e) => {
         deleteButton.addEventListener('click', () => {
           let features = map.queryRenderedFeatures(e.point)
           const id = features.map(f => f.id)
-          console.log(`deleting element with id ${id[0]}`)
           deleteFeature(id[0], "custom-markers")
           closeMenu()
         })

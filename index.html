@@ -17,7 +17,7 @@
         
         <nav>
             <div id="logo" class="nav-item">
-                <img src="images/icons/logo.png"/>
+                <img id="logo-img" src="images/icons/logo.png"/>
                 <h1>MapThingy</h1>
             </div>
             <div id="export" class="nav-item">
@@ -38,6 +38,26 @@
 
             </div>
         </nav>
+        <div id="map-controls">
+            <div id="position-controls">
+                <div id="zoom-in">
+                    <img id="zoom-in-img" src="/images/icons/plus.svg">
+                </div>
+                <div id="zoom-out">
+                    <img id="zoom-out-img" src="/images/icons/minus.svg">
+                </div>
+                <div id="rotate" class="invisible"></div>
+            </div>
+            <div id="other-controls">
+                <div id="layers-control">
+                    <img id="layers-img" src="/images/icons/layers.svg">
+                </div>
+                <div id="globe">
+                    <img id="globe-img" src="images/icons/globe.svg">
+                </div>
+                <div id="map-styles" class="invisible"></div>
+            </div>
+        </div>
         <div id="map"></div>
         <script src="javascript/script.js" defer></script>
         <div id="slider-box">
