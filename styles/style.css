@@ -492,7 +492,6 @@ nav {
     justify-content: center;
 }
 .filter-subcategory {
-    border: 1px solid white;
     border-radius: 10px;
     margin: 5px;
     width: calc(50% - 35px);
@@ -905,7 +904,7 @@ nav {
     .filter.on .filter-subcategory.on {
         background-color: #060A1C;
         color: white;
-        border: 1px solid #060A1C;
+        border: 1px solid white;
     }
 
 
