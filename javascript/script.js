@@ -113,6 +113,8 @@ map.on("styledata", () => {
       }
     })
     updateColors()
+    toggleHoverCountries(false)
+    toggleHoverStates(false)
   }
 })
 
@@ -275,7 +277,8 @@ let filterList = [
         id: "state-lines",
         isOn: true,
         toggledLayers: [
-          "state_lines_admin_4"
+          "state_lines_admin_4",
+          "states_fill"
         ],
         prettyName: "State Lines"
       },
@@ -283,7 +286,8 @@ let filterList = [
         id: "country-lines",
         isOn: true,
         toggledLayers: [
-          "country_boundaries"
+          "country_boundaries",
+          "country_boundaries_fill"
         ]
       }
     ]
@@ -409,6 +413,95 @@ function toggleLayers(on, layerList) {
     updateMapLayers()
   }
 }
+
+// hover effect
+let hover = true 
+let hoveredCountryId
+let hoveredStateId
+
+// countries
+map.on('mousemove', 'country_boundaries_fill', (e) => {
+  if (e.features.length > 0) {
+    if (hoveredCountryId != null) {
+      map.setFeatureState(
+        {source: "ohm_admin", sourceLayer: "boundaries", id: hoveredCountryId},
+        {hover: false}
+      )
+    }
+
+    hoveredCountryId = e.features[0].id
+    map.setFeatureState(
+      {source: "ohm_admin", sourceLayer: "boundaries", id: hoveredCountryId},
+      {hover: true}
+    )
+  }
+})
+map.on("mouseleave", "country_boundaries_fill", (e) => {
+  if (hoveredCountryId != null) {
+    map.setFeatureState(
+      {source: "ohm_admin", sourceLayer: "boundaries", id: hoveredCountryId},
+      {hover: false}
+    )
+  }
+  hoveredCountryId == null
+})
+
+
+// states
+map.on('mousemove', 'states_fill', (e) => {
+  if (e.features.length > 0) {
+    if (hoveredStateId != null) {
+      map.setFeatureState(
+        {source: "ohm_admin", sourceLayer: "boundaries", id: hoveredStateId},
+        {hover: false}
+      )
+    }
+
+    hoveredStateId = e.features[0].id
+    map.setFeatureState(
+      {source: "ohm_admin", sourceLayer: "boundaries", id: hoveredStateId},
+      {hover: true}
+    )
+  }
+})
+map.on("mouseleave", "states_fill", (e) => {
+  if (hoveredStateId != null) {
+    map.setFeatureState(
+      {source: "osm", sourceLayer: "land_ohm_lines", id: hoveredStateId},
+      {hover: false}
+    )
+  }
+  hoveredStateId
+})
+
+
+function toggleHoverCountries(visible) {
+  if (visible) {
+    map.setLayoutProperty('country_boundaries_fill', 'visibility', 'visible')
+  } else {
+    map.setLayoutProperty('country_boundaries_fill', 'visibility', 'none')
+  }
+}
+
+function toggleHoverStates(visible) {
+  if (visible) {
+    map.setLayoutProperty('states_fill', 'visibility', 'visible')
+  } else {
+    map.setLayoutProperty('states_fill', 'visibility', 'none')
+  }
+}
+
+map.on("wheel", (e) => {
+  if (hover) {
+    if (map.getZoom() >=  4) {
+      toggleHoverCountries(false)
+      toggleHoverStates(true)
+    } else {
+      toggleHoverCountries(true)
+      toggleHoverStates(false)
+    }
+  }
+})
 
 const toggleQuickMenu = document.getElementById("scroll")
 

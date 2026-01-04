@@ -881,6 +881,7 @@ nav {
     }
     .greyed-out {
         color: #31353A !important;
+        color: #ff0000;
     }
     #save-img-select hr {
         border: 1px solid #ffffff;
