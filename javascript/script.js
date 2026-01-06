@@ -113,8 +113,7 @@ map.on("styledata", () => {
       }
     })
     updateColors()
-    toggleHoverCountries(false)
-    toggleHoverStates(false)
+    applyHovers(false)
   }
 })
 
@@ -415,7 +414,7 @@ function toggleLayers(on, layerList) {
 }
 
 // hover effect
-let hover = true 
+let hover = false
 let hoveredCountryId
 let hoveredStateId
 
@@ -493,7 +492,7 @@ function toggleHoverStates(visible) {
 
 function applyHovers(visible) {
   if (visible) {
-    if (map.getZoom() >=  4) {
+    if (map.getZoom() >=  4 && filterList[0].subcategories[0].isOn) {
       toggleHoverCountries(false)
       toggleHoverStates(true)
     } else {
@@ -668,6 +667,7 @@ function toggleWhitelist() {
     applyWhitelist = true
   }
   updateMapLayers()
+  setHovers(false)
 }
 
 // add a function to update the map when the user clicks a toggle to show/hide something
@@ -779,50 +779,6 @@ function swapDarkModeImages(isDarkMode) {
     {
       id: "save-as-close-button",
       filename: "close"
-    },
-    {
-      id: "label-checkbox-img",
-      filename: "unchecked"
-    },
-    {
-      id: "capital-img",
-      filename: "major-cities"
-    },
-    {
-      id: "minor-cities-img",
-      filename: "minor-cities"
-    },
-    {
-      id: "state-labels-img",
-      filename: "state"
-    },
-    {
-      id: "custom-markers-img",
-      filename: "custom-markers"
-    },
-    {
-      id: "borders-checkbox-img",
-      filename: "unchecked"
-    },
-    {
-      id: "country-borders-img",
-      filename: "country"
-    },
-    {
-      id: "state-borders-img",
-      filename: "state"
-    },
-    {
-      id: "background-img",
-      filename: "background"
-    },
-    {
-      id: "rivers-img",
-      filename: "river"
-    },
-    {
-      id: "battles-img",
-      filename: "battles"
     }
   ]
 
@@ -897,14 +853,14 @@ queryControl.addEventListener('click', () => {
     queryClicked = true
     applyHovers(true)
     queryImg.src = "./images/icons/query-selected.svg"
-
+    hover = true
     // set a custom cursor 
     map.getCanvas().style.cursor = "url('./images/icons/query-dark.svg'), auto"
   } else {
     queryClicked = false
     applyHovers(false)
     swapDarkModeImages(isDarkMode)
-
+    hover = false
     map.getCanvas().style.cursor = ""
   }
 })
@@ -1160,10 +1116,49 @@ slider.addEventListener('change', () => {
   updateDate();
 });
 
+function getDataForId(id) {
+
+}
+
 // smth for debug
 map.on('click', (e) => {
   const features = map.queryRenderedFeatures(e.point);
-  console.log(features.map(f => f.id), features.map(f => f.properties));
+  console.log(features.map(f => f.id), features);
+
+  if(queryClicked) {
+    swapDarkModeImages(isDarkMode)
+    queryClicked = false
+    applyHovers(false)
+    map.getCanvas().style.cursor = ''
+
+    if (map.getZoom() >= 4) {
+      const indexOfStateFill = features.findIndex(f => f.layer.id == "states_fill")
+      if (indexOfStateFill) {
+        const stateName = features[indexOfStateFill].properties.name
+        const indexOfState = map.queryRenderedFeatures(null, {
+          filter: [
+            "any",
+            ["==", ["get", "name"], stateName],
+            ["==", ["get", "name_en"], stateName]
+          ]
+        })
+        console.log(indexOfState)
+      }
+    } else {
+      const indexOfCountryFill = features.findIndex(f => f.layer.id == "country_boundaries_fill")
+      if (indexOfCountryFill) {
+        const countryName = features[indexOfCountryFill].properties.name
+        const indexOfCountry = map.queryRenderedFeatures(null, {
+          filter: [
+            "any",
+            ["==", ["get", "name"], countryName],
+            ["==", ["get", "name_en"], countryName]
+          ]
+        })
+        console.log(indexOfCountry)
+      }
+    }
+  }
 });
 
 // right click functionality
@@ -1180,9 +1175,6 @@ function addToRightClick(text, isLink = false, link) {
   }
   rightClickList.appendChild(li)
 }
-document.addEventListener('contextmenu', (e) => {
-  e.preventDefault()
-})
 
 function addToRightClickTop(text) {
   let li = document.createElement('li') 
@@ -1341,6 +1333,7 @@ function deleteFeature(featureId, layer) {
 }
 
 map.on('contextmenu', (e) => {
+  console.log("click me")
   // move the box to the mouse and display it
   rightClickMenuOpen = true
   e.preventDefault()

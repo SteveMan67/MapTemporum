@@ -1,0 +1,43 @@
+{
+  "layers": {
+    "place": {
+      "minzoom": 0,
+      "maxzoom": 14
+    },
+    "water_labels": {
+      "minzoom": 3, 
+      "maxzoom": 14
+    },
+    "boundaries": {
+      "minzoom": 0,
+      "maxzoom": 14
+    },
+    "water_lines": {
+      "minzoom": 3,
+      "maxzoom": 14
+    },
+    "water_areas": {
+      "minzoom": 0,
+      "maxzoom": 14
+    },
+    "natural_lines": {
+      "minzoom": 11,
+      "maxzoom": 14
+    },
+    "chronologies": {
+      
+    }
+  },
+  "settings": {
+    "minzoom": 0,
+    "maxzoom": 14,
+    "basezoom": 14,
+    "include_ids": true,
+    "compress": "qzip",
+    "file_buffer_size": 256,
+    "name": "GeoTemporum",
+    "type": "overlay",
+    "version": "1.0.0",
+    "format": "pbf"
+  }
+}

@@ -92,7 +92,7 @@
             <div id="layer-selection" class="invisible">
                 <div id="top">
                     <h2>Filters</h2>
-                    <img id="filter-close-button" src="images/icons/close.svg">
+                    <img id="filter-close-button">
                 </div>
                 <div id="filters">
                     <div id="column-1">
@@ -102,32 +102,32 @@
                                 <div class="centered-text">
                                     <h3>Labels</h3>
                                 </div>
-                                <img id="label-checkbox-img" src="./images/icons/unchecked.svg">
+                                <div id="label-checkbox-img" class="filter-img"></div>
                             </div>
                             <div id="label-subcategories" class="subcategories">
                                 <div id="capital-cities" class="filter-subcategory">
                                     <div class="centered-text">
                                         <h4>Capital Cities</h4>
                                     </div>
-                                    <img id="capital-img" src="./images/icons/major-cities.svg">
+                                    <div id="capital-img" class="filter-img"></div>
                                 </div>
                                 <div id="minor-cities" class="filter-subcategory">
                                     <div class="centered-text">
                                         <h4>Minor Cities</h4>
                                     </div>
-                                    <img id="minor-cities-img" src="./images/icons/minor-cities.svg">
+                                    <div id="minor-cities-img" class="filter-img"></div>
                                 </div>
                                 <div id="state-labels" class="filter-subcategory">
                                     <div class="centered-text">
                                         <h4>States</h4>
                                     </div>
-                                    <img id="state-labels-img" src="./images/icons/state.svg">
+                                    <div id="state-labels-img" class="filter-img"></div>
                                 </div>
                                 <div id="custom-markers" class="filter-subcategory">
                                     <div class="centered-text">
                                         <h4>Custom Markers</h4>
                                     </div>
-                                    <img id="custom-markers-img"  src="./images/icons/custom-markers.svg">
+                                    <div id="custom-markers-img" class="filter-img"></div>
                                 </div>
                             </div>
                          </div>
@@ -137,16 +137,16 @@
                                     <h3>Borders</h3>
                                 </div>
                                 
-                                <img id="borders-checkbox-img" src="./images/icons/unchecked.svg">
+                                <div id="borders-checkbox-img" class="filter-img"></div>
                             </div>
                             <div id="border-subcategories" class="subcategories">
                                 <div id="country-lines" class="filter-subcategory">
                                     <h4>Countries</h4>
-                                    <img id="country-borders-img" src="./images/icons/country.svg">
+                                    <div id="country-borders-img" class="filter-img"></div>
                                 </div>
                                 <div id="state-lines" class="filter-subcategory">
                                     <h4>States</h4>
-                                    <img id="state-borders-img" src="./images/icons/state.svg">
+                                    <div id="state-borders-img" class="filter-img"></div>
                                 </div>
                             </div>
                          </div>
@@ -157,20 +157,20 @@
                             <div class="centered-text">
                                 <h3>Background</h3>
                             </div>
-                            <img id="background-img" src="./images/icons/background.svg">
+                            <div id="background-img" class="filter-img"></div>
                          </div>
                          <div id="rivers" class="filter head">
                             <div class="centered-text">
                                 <h3>Rivers</h3>
                             </div>
-                            <img id="rivers-img" src="./images/icons/river.svg">
+                            <div id="rivers-img" class="filter-img"></div>
                          </div>
                          <div id="battles" class="filter head">
                             <div id="battles-text" class="centered-text">
                             <h3>Battles</h3>
                             <h4>(experimental)</h4>
                             </div>
-                            <img id="battles-img" src="./images/icons/battles.svg">
+                            <div id="battles-img" class="filter-img"></div>
                          </div>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
             <div id="save-img-select" class="invisible">
                 <div id="top">
                     <h2>Save As</h2>
-                    <img id="save-as-close-button" src="images/icons/close.svg">
+                    <div id="save-as-close-button" src="images/icons/close.svg"></div>
                 </div>
                 <hr>
                 <ol>
@@ -213,6 +213,7 @@
             </div>
             
         </div>
+
         <div id="right-click" class="invisible">
             <ol id="right-click-list">
                 <li id="add-marker">Place Marker</li>

@@ -500,16 +500,15 @@ nav {
     margin: 5px;
     width: calc(50% - 35px);
     height: 40px;
+    border: 1px solid white;
+    background-color: #fff;
+    color: black;
     padding: 5px 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     user-select: none;
-}
-.filter-subcategory img {
-    width: 25px;
-    height: 25px;
 }
 .filter-subcategory h4 {
     margin: 0;
@@ -556,9 +555,11 @@ nav {
     background-color: #4421AE;
     color: white;
 }
+
 .filter.on .filter-subcategory.on {
-    background-color: white;
-    color: black;
+    background-color: #4421AE;
+    color: white;
+    border: 1px solid #4421AE;
 }
 
 
@@ -635,6 +636,7 @@ nav {
     background-color: var(--background);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.438);
     border-radius: 20px;
+    z-index: 10000;
 }
 #right-click ol {
     padding: 10px 0;
@@ -762,7 +764,7 @@ nav {
 
 }
 
-@media (orientation: landscape) and (max-height: 750px) {
+@media (orientation: landscape) and (max-height: 600px) {
     /* nav bar */
     #logo, #export, #filter {
         margin: 10px 10px 0 10px;
@@ -898,22 +900,200 @@ nav {
     }
     .filter {
         background-color: #060A1C;
-        border: 2px solid #201e25;
+        border: 2px solid #060A1C;
     }
-
     .filter.on {
         background-color: #4421AE;
         border: 2px solid #4421AE;
         color: white;
     }
-    .filter.on .filter-subcategory.on {
+    .filter-subcategory {
         background-color: #060A1C;
+        border: 1px solid #060A1C;
         color: white;
-        border: 1px solid white;
+    }
+    .filter.on .filter-subcategory.on {
+        background-color: #4421AE;
+        color: white;
+        border: 1px solid #4421AE;
     }
 
 
 }
+
+#layer-selection div.filter-img {
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#column-1 div.filter-img{
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+}
+#column-2 div.filter-img {
+    width: 35px;
+    height: 35px;
+    min-height: 35px;
+    min-width: 35px;
+}
+
+@media (prefers-color-scheme: light) {
+    /* column 1 */
+    #label-checkbox-img {
+        background-image: url("../images/icons/unchecked.svg");
+    }
+    #capital-img {
+        background-image: url("../images/icons/major-cities.svg");
+    }
+    #minor-cities-img {
+        background-image: url("../images/icons/minor-cities.svg");
+    }
+    #state-labels-img {
+        background-image: url("../images/icons/state.svg");
+    }
+    #custom-markers-img {
+        background-image: url("../images/icons/custom-markers.svg");
+    }
+    #borders-checkbox-img {
+        background-image: url("../images/icons/unchecked.svg");
+    }
+    #country-borders-img {
+        background-image: url("../images/icons/country.svg");
+    }
+    #state-borders-img {
+        background-image: url("../images/icons/state.svg");
+    }
+
+    /* column 2 */
+    #background-img {
+        background-image: url("../images/icons/background.svg");
+    }
+    #rivers-img {
+        background-image: url("../images/icons/river.svg");
+    }
+    #battles-img {
+        background-image: url("../images/icons/battles.svg");
+    }
+
+    /* any overrides for applied/not applied filters */
+
+    /* column 1 */
+    .filter.on #label-checkbox-img {
+        background-image: url("../images/icons/unchecked-dark.svg");
+    }
+    .filter.on .filter-subcategory.on #capital-img {
+        background-image: url("../images/icons/major-cities-dark.svg");
+    }
+    .filter.on .filter-subcategory.on #minor-cities-img {
+        background-image: url("../images/icons/minor-cities-dark.svg");
+    }
+    .filter.on .filter-subcategory.on #state-labels-img {
+        background-image: url("../images/icons/state-dark.svg");
+    }
+    .filter.on .filter-subcategory.on #custom-markers-img {
+        background-image: url("../images/icons/custom-markers-dark.svg");
+    }
+    .filter.on #borders-checkbox-img {
+        background-image: url("../images/icons/unchecked-dark.svg");
+    }
+    .filter.on .filter-subcategory.on #country-borders-img {
+        background-image: url("../images/icons/country-dark.svg");
+    }
+    .filter.on .filter-subcategory.on #state-borders-img {
+        background-image: url("../images/icons/state-dark.svg");
+    }
+
+    /* column 2 */
+    .filter.on #background-img {
+        background-image: url("../images/icons/background-dark.svg");
+    }
+    .filter.on #rivers-img {
+        background-image: url("../images/icons/river-dark.svg");
+    }
+    .filter.on #battles-img {
+        background-image: url("../images/icons/battles-dark-dark.svg");
+    }
+
+    /* column 1 */
+    .filter-subcategory #label-checkbox-img {
+        background-image: url("../images/icons/unchecked.svg");
+    }
+    .filter-subcategory #capital-img {
+        background-image: url("../images/icons/major-cities.svg");
+    }
+    .filter-subcategory #minor-cities-img {
+        background-image: url("../images/icons/minor-cities.svg");
+    }
+    .filter-subcategory #state-labels-img {
+        background-image: url("../images/icons/state.svg");
+    }
+    .filter-subcategory #custom-markers-img {
+        background-image: url("../images/icons/custom-markers.svg");
+    }
+    .filter-subcategory #borders-checkbox-img {
+        background-image: url("../images/icons/unchecked.svg");
+    }
+    .filter-subcategory #country-borders-img {
+        background-image: url("../images/icons/country.svg");
+    }
+    .filter-subcategory #state-borders-img {
+        background-image: url("../images/icons/state.svg");
+    }
+
+    /* column 2 */
+    .filter-subcategory #background-img {
+        background-image: url("../images/icons/background.svg");
+    }
+    .filter-subcategory #rivers-img {
+        background-image: url("../images/icons/river.svg");
+    }
+    .filter-subcategory #battles-img {
+        background-image: url("../images/icons/battles.svg");
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+    /* column 1 */
+    #label-checkbox-img {
+        background-image: url("../images/icons/unchecked-dark.svg");
+    }
+    #capital-img {
+        background-image: url("../images/icons/major-cities-dark.svg");
+    }
+    #minor-cities-img {
+        background-image: url("../images/icons/minor-cities-dark.svg");
+    }
+    #state-labels-img {
+        background-image: url("../images/icons/state-dark.svg");
+    }
+    #custom-markers-img {
+        background-image: url("../images/icons/custom-markers-dark.svg");
+    }
+    #borders-checkbox-img {
+        background-image: url("../images/icons/unchecked-dark.svg");
+    }
+    #country-borders-img {
+        background-image: url("../images/icons/country-dark.svg");
+    }
+    #state-borders-img {
+        background-image: url("../images/icons/state-dark.svg");
+    }
+
+    /* column 2 */
+    #background-img {
+        background-image: url("../images/icons/background-dark.svg");
+    }
+    #rivers-img {
+        background-image: url("../images/icons/river-dark.svg");
+    }
+    #battles-img {
+        background-image: url("../images/icons/battles-dark.svg");
+    }
+}
+/* a lot of stupid dark/light mode image stuff */
+
 
 /* misc */
 .invisible {
