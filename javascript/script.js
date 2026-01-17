@@ -1136,31 +1136,10 @@ map.on('click', (e) => {
     map.getCanvas().style.cursor = ''
 
     if (map.getZoom() >= 4) {
-      const indexOfStateFill = features.findIndex(f => f.layer.id == "states_fill")
-      if (indexOfStateFill) {
-        const stateName = features[indexOfStateFill].properties.name
-        const indexOfState = map.queryRenderedFeatures(null, {
-          filter: [
-            "any",
-            ["==", ["get", "name"], stateName],
-            ["==", ["get", "name_en"], stateName]
-          ]
-        })
-        console.log(indexOfState)
-      }
+      console.log(features[0].properties.name)
+      
     } else {
-      const indexOfCountryFill = features.findIndex(f => f.layer.id == "country_boundaries_fill")
-      if (indexOfCountryFill) {
-        const countryName = features[indexOfCountryFill].properties.name
-        const indexOfCountry = map.queryRenderedFeatures(null, {
-          filter: [
-            "any",
-            ["==", ["get", "name"], countryName],
-            ["==", ["get", "name_en"], countryName]
-          ]
-        })
-        console.log(indexOfCountry)
-      }
+      console.log(features[0].properties.name)
     }
   }
 });
