@@ -1,0 +1,62 @@
+{
+  "map_type": "history_period_study",
+  "map_bounds": {
+    "ne": {
+      "lng": -10.624999999999375,
+      "lat": -10.624999999999375
+    },
+    "sw": {
+      "lng": 2.182654800610891,
+      "lat": -179.37499999999955
+    }
+  },
+  "time_range": {
+    "start_year": -200,
+    "end_year": 2026
+  },
+  "features": [
+    {
+      "text": "This is where I went wrong",
+      "type": "marker",
+      "lng": -98.7792968749995,
+      "lat": 31.41664569888968,
+      "year-range": {
+        "start-year": -200,
+        "end-year": 200
+      }
+    },
+    {
+      "text": "ROME",
+      "type": "area",
+      "area_points": [
+        {
+          "lng": 0,
+          "lat": 0
+        },
+        {
+          "lng": 1,
+          "lat": 0
+        },
+        {
+          "lng": 1,
+          "lat": 1
+        },
+        {
+          "lng": 0,
+          "lat": 1
+        }
+      ]
+    },
+    {
+      "text": "Big Boombads VS a lot of Nuclear Submarines",
+      "type": "battle",
+      "lng": -108.35937499999967,
+      "lat": 58.44036287829067,
+      "year": 2026
+    }
+  ],
+  "notable_years": [
+    2026, 
+    -200
+  ]
+}

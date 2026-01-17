@@ -123,7 +123,7 @@ map.on('load', () => {
 
 let isPhone = window.innerWidth <= 600 && 'ontouchstart' in window;
 window.addEventListener('resize', () => {
-  let isPhone = window.innerWidth <= 600 && 'ontouchstart' in window;
+  isPhone = window.innerWidth <= 600 && 'ontouchstart' in window;
 })
 
 function setLanguage(lang) {
@@ -539,6 +539,7 @@ function addFilters() {
         } else {
           toggledEl.classList.remove("on")
         }
+        applyHovers(hover)
       })
     }
     if (filter.subcategories) {
@@ -562,6 +563,7 @@ function addFilters() {
             } else {
               element.classList.remove("on")
             }
+            applyHovers(hover)
           })
         }
       }
@@ -612,6 +614,7 @@ saveAsCloseButton.addEventListener("click", () => {
   clickOnBackgroundToClose = false
   optionsContainer.classList.add("invisible")
   saveAsScreen.classList.add("invisible")
+  applyHovers(hover)
 })
 
 const filenameSelector = document.getElementById('filename')
@@ -685,13 +688,8 @@ function updateMapLayers() {
     }
     layers.push(layer.id);
     // console.log(layers)
-    if (hover) {
-      applyHovers(true)
-    } else {
-      applyHovers(false)
-    }
+    applyHovers(hover)
   }
-
 }
 
 let applyColors = true;
@@ -847,10 +845,10 @@ zoomOut.addEventListener('click', () => {
   map.zoomOut()
 })
 globeControl.addEventListener('mousedown', (e) => {
-  e.preventDefault
+  e.preventDefault()
 })
 queryControl.addEventListener('mousedown', (e) => {
-  e.preventDefault
+  e.preventDefault()
 })
 queryControl.addEventListener('click', () => {
   if (!queryClicked) {
@@ -1017,7 +1015,7 @@ maxDateInput.addEventListener('input', () => {
 maxDateInput.addEventListener('focusout', () => {
   let date = maxDateInput.value
   if (isValidDate(maxDateInput.value, maxEraDisplay) && isLessThanDate()) {
-    if (maxEraInput.ivalue == 'BC') {
+    if (maxEraInput.value == 'BC') {
       slider.max = (Math.abs(date) * -1)
     } else {
       slider.max = date
@@ -1120,9 +1118,6 @@ slider.addEventListener('change', () => {
   updateDate();
 });
 
-function getDataForId(id) {
-
-}
 
 // smth for debug
 map.on('click', (e) => {
@@ -1405,14 +1400,14 @@ map.on('touchend', () => {
   clearTimeout(longPressTimer)
 })
 
-map.on('touchmove', () => {
+map.on('touchcancel', () => {
   clearTimeout(longPressTimer)
 })
 
 function addMarkerEventListener(lng, lat) {
   const addMarkerButton = document.getElementById('add-marker')
   addMarkerButton.addEventListener('mousedown', (e) => {
-    e.stopPropagation;
+    e.stopPropagation();
   })
   addMarkerButton.addEventListener('click', function handler() {
     let textSelect = document.createElement('input')
